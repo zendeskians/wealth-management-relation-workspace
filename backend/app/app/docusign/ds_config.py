@@ -1,0 +1,20 @@
+import os
+
+TPL_PATH = os.path.abspath(
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates/')
+)
+
+
+TOKEN_EXPIRATION_IN_SECONDS = 3600
+TOKEN_REPLACEMENT_IN_SECONDS = 10 * 60
+
+CLICKWRAP_BASE_HOST = ''
+CLICKWRAP_BASE_URI = ''
+CLICKWRAP_TIME_DELTA_IN_MINUTES = 15
+
+CODE_GRANT_SCOPES = ['signature', 'impersonation', 'click.manage']
+PERMISSION_SCOPES = ['signature', 'impersonation', 'click.manage']
+
+DS_RETURN_URL = os.environ.get('REACT_APP_DS_RETURN_URL')
+DS_AUTH_SERVER = os.environ.get('DS_AUTH_SERVER')
+DS_DEMO_SERVER = os.environ.get('REACT_APP_DS_DEMO_SERVER')
