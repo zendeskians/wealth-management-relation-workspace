@@ -12,7 +12,7 @@ export default function PieChart(props) {
               "#BB82F6"
             ],
         }],
-    
+
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
             'Crypto',
