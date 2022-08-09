@@ -64,7 +64,6 @@ class CRUDClient(CRUDBase[Client, ClientCreate, ClientUpdate]):
             wealth_manager = crud.wealth_manager.get_by_id(
                 db, id=update_data["wealth_manager_id"]
             )
-            print(wealth_manager)
             if not wealth_manager:
                 raise HTTPException(
                     status_code=404,

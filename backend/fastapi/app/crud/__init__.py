@@ -1,4 +1,5 @@
 from .crud_client import client
+from .crud_portfolio import portfolio
 from .crud_wealth_manager import wealth_manager
 
 # For a new basic set of CRUD operations you could just do
