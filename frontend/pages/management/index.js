@@ -10,7 +10,7 @@ import PortfolioPerformance from "../../components/PortfolioPerformance";
 import SidebarManager from "../../components/SidebarManager";
 import BreadcrumbBar from "../../components/Manager/BreadcrumbBar";
 import PieChart from "../../components/PieChart";
-import { data } from "../../constants/ClientPortfolioPerformance";
+import { lineGraphData, pieChartData } from "../../constants/ClientPortfolioPerformance";
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
@@ -34,10 +34,10 @@ const App = () => {
             Your Clients
           </div>
           <BreadcrumbBar currentPath={"1"}/>
-          <PortfolioPerformance data={data[clientIdToView]}/>
+          <PortfolioPerformance data={lineGraphData[clientIdToView]}/>
           <div className="w-full justify-center flex mt-10">
             <div className="w-1/3 self-center">
-              <PieChart />
+              <PieChart data={pieChartData[clientIdToView]}/>
             </div>
           </div>
         </Content>

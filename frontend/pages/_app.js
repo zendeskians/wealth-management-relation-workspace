@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import Script from 'next/script'
-import './register.css'
+import './register/register.css'
 
 function MyApp({ Component, pageProps }) {
   return (

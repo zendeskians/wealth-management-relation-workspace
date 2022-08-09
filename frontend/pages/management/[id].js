@@ -11,7 +11,7 @@ import PortfolioPerformance from "../../components/PortfolioPerformance";
 import SidebarManager from "../../components/SidebarManager";
 import BreadcrumbBar from "../../components/Manager/BreadcrumbBar";
 import PieChart from "../../components/PieChart";
-import { data } from "../../constants/ClientPortfolioPerformance";
+import { lineGraphData, pieChartData } from "../../constants/ClientPortfolioPerformance";
 const { Header, Sider, Content } = Layout;
 
 export const getStaticPaths = async () => {
@@ -56,10 +56,10 @@ const ClientPortfolio = (props) => {
             Your Clients
           </div>
           <BreadcrumbBar currentPath={props.id}/>
-          <PortfolioPerformance data={data[parseInt(props.id-1)]}/>
+          <PortfolioPerformance data={lineGraphData[parseInt(props.id-1)]}/>
           <div className="w-full justify-center flex mt-10">
             <div className="w-1/3 self-center">
-              <PieChart />
+              <PieChart data={pieChartData[parseInt(props.id-1)]}/>
             </div>
           </div>
         </Content>

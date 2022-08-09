@@ -1,4 +1,4 @@
-export const data = {
+export const lineGraphData = {
     labels:["January","February","March","April","May","June","July","August","Sept"],
     datasets: [
       {
@@ -14,3 +14,19 @@ export const data = {
       },
     ],
   };
+
+export const pieChartData = {
+  datasets: [{
+      data: [40,60],
+      backgroundColor: [
+        "#3B82F6",
+        "#BB82F6"
+      ],
+  }],
+
+  // These labels appear in the legend and in the tooltips when hovering different arcs
+  labels: [
+      'Crypto',
+      "Bonds"
+  ]
+};

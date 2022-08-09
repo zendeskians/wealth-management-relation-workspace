@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import RegisterForm from '../../components/Form/RegisterForm'
 
-const login = () => {
+const register = () => {
   return (
     <div class="w-screen h-screen bg-white flex">
       <div class="m-auto w-1/4 text-center"><Image src="/citibank.jpeg" width="400px" height="400px" /></div>
@@ -14,4 +14,4 @@ const login = () => {
   )
 }
 
-export default login
+export default register
