@@ -74,12 +74,13 @@ class CRUDClient(CRUDBase[Client, ClientCreate, ClientUpdate]):
         return super().update(db, db_obj=db_obj, obj_in=update_data)
 
     def authenticate(
-        self, db: Session, *, email: str, password: str
+        self, db: Session, *, username: str, password: str
     ) -> Optional[Client]:
-        client = self.get_by_email(db, email=email)
+        client = self.get_by_username(db, username=username)
+        print(client)
         if not client:
             return None
-        if not verify_password(password, client.hashed_password):
+        if not verify_password(password, client.password):
             return None
         return client
 

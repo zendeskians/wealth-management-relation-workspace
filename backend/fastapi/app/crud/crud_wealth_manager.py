@@ -61,12 +61,12 @@ class CRUDWealthManager(
         return super().update(db, db_obj=db_obj, obj_in=update_data)
 
     def authenticate(
-        self, db: Session, *, email: str, password: str
+        self, db: Session, *, username: str, password: str
     ) -> Optional[Wealth_Manager]:
-        wealth_manager = self.get_by_email(db, email=email)
+        wealth_manager = self.get_by_username(db, username=username)
         if not wealth_manager:
             return None
-        if not verify_password(password, wealth_manager.hashed_password):
+        if not verify_password(password, wealth_manager.password):
             return None
         return wealth_manager
 
