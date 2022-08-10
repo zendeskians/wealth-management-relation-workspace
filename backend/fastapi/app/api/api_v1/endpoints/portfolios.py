@@ -15,14 +15,11 @@ def get_all_portfolios(
     db: Session = Depends(deps.get_db),
     skip: int = 0,
     limit: int = 100,
-    active_only: bool = True,
 ) -> Any:
     """
     Retrieve all portfolios.
     """
-    portfolios = crud.portfolio.get_multi(
-        db, skip=skip, limit=limit, active_only=active_only
-    )
+    portfolios = crud.portfolio.get_multi(db, skip=skip, limit=limit)
     return portfolios
 
 
