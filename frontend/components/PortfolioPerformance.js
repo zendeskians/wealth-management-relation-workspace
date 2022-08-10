@@ -16,7 +16,7 @@ const PortfolioPerformance = (props) => {
   //   and finally lets return a chart component with our api data and
   //   config
   return (
-    <div className="chart-container w-full h-1/2 p-2">
+    <div className="chart-container w-full p-2 h-full">
       <Line data={props.data} options={Config}  />
     </div>
   );
