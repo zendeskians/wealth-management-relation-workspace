@@ -15,3 +15,13 @@ const register = () => {
 }
 
 export default register
+
+// export async function getServerSideProps(context) {
+//     // const res = await fetch(process.env.API_URL)
+//     console.log(process.env.API_URL)
+//     return {
+//         props: {
+
+//         }
+//     }
+// }

@@ -11,7 +11,7 @@ const { Sider } = Layout;
 export default function SidebarManager(props){
 
   const router = useRouter();
-  
+
   return (
     <Sider trigger={null} collapsible collapsed={false}>
       <div className="flex text-white justify-center w-full h-32 items-center">
