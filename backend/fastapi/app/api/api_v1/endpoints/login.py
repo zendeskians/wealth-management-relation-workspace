@@ -17,7 +17,6 @@ router = APIRouter()
 @router.post("/login/access-token", response_model=schemas.Token)
 def login_access_token(
     db: Session = Depends(deps.get_db),
-    grant_type: str = "password",
     username: str = Body(...),
     password: str = Body(...),
     user_type: str = Body(...),
