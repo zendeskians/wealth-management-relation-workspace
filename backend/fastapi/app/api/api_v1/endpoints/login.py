@@ -10,46 +10,25 @@ from app.core.config import settings
 from app.core.security import get_password_hash
 from app.utils import verify_password_reset_token
 from fastapi import APIRouter, Body, Depends, HTTPException
-from fastapi.security import OAuth2PasswordRequestForm
 
 router = APIRouter()
-
-
-class CustomOAuth2PasswordRequestForm(OAuth2PasswordRequestForm):
-    def __init__(
-        self,
-        grant_type: str = Form(None, regex="password"),
-        username: str = Form(...),
-        password: str = Form(...),
-        user_type: str = Form(...),
-        scope: str = Form(""),
-        client_id: Optional[str] = Form(None),
-        client_secret: Optional[str] = Form(None),
-    ):
-        self.grant_type = grant_type
-        self.username = username
-        self.password = password
-        self.scopes = scope.split()
-        self.client_id = client_id
-        self.client_secret = client_secret
-        self.user_type = user_type
 
 
 @router.post("/login/access-token", response_model=schemas.Token)
 def login_access_token(
     db: Session = Depends(deps.get_db),
-    form_data: CustomOAuth2PasswordRequestForm = Depends(),
+    grant_type: str = "password",
+    username: str = Body(...),
+    password: str = Body(...),
+    user_type: str = Body(...),
 ) -> Any:
     """
     OAuth2 compatible token login, get an access token for future requests
     """
-    user_type = form_data.user_type
     if user_type not in ("client", "wealth_manager"):
         raise HTTPException(status_code=400, detail="Invalid user type")
     crud_class = getattr(crud, user_type)
-    oauth_client = crud_class.authenticate(
-        db, username=form_data.username, password=form_data.password
-    )
+    oauth_client = crud_class.authenticate(db, username=username, password=password)
 
     if not oauth_client:
         raise HTTPException(status_code=400, detail="Incorrect email or password")
