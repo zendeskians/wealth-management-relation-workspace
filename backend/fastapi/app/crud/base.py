@@ -27,7 +27,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         return db.query(self.model).filter(self.model.id == id).first()
 
     def get_multi(
-        self, db: Session, *, skip: int = 0, limit: int = 100, active_only: bool = True
+        self, db: Session, *, skip: int = 0, limit: int = 100, active_only: bool = False
     ) -> List[ModelType]:
         if active_only:
             return (
