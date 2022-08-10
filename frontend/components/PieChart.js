@@ -19,11 +19,12 @@ export default function PieChart(props) {
             "Bonds"
         ]
     };
+
     const config = {
         type: 'doughnut',
-        data: data,
+        data: props.data,
       };
     return(
-        <Doughnut options={config} data={data}/>
+        <Doughnut options={config} data={props.data}/>
     )
 }
