@@ -45,8 +45,7 @@ CREATE TABLE IF NOT EXISTS `client` (
     `wealth_manager_id` int DEFAULT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY (`username`),
-    UNIQUE KEY (`email`),
-    FOREIGN KEY (`wealth_manager_id`) REFERENCES `wealth_manager`(`id`)
+    UNIQUE KEY (`email`)
 ) DEFAULT CHARSET=utf8;
 """
 
