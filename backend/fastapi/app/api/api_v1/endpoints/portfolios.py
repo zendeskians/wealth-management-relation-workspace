@@ -35,7 +35,7 @@ def get_portfolio_by_id(
     return portfolio
 
 
-@router.get("/client/{client_id}", response_model=List[schemas.Client])
+@router.get("/client/{client_id}", response_model=List[schemas.Portfolio])
 def get_all_portfolios_by_client(
     client_id: int,
     db: Session = Depends(deps.get_db),
