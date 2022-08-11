@@ -74,7 +74,7 @@ def get_current_wealth_manager(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Could not validate credentials",
         )
-    wealth_manager = crud.wealth_manager.get(db, id=token_data.sub)
+    wealth_manager = crud.wealth_manager.get(db, id=token_data.id)
     if not wealth_manager:
         raise HTTPException(status_code=404, detail="Wealth manager not found")
     return wealth_manager

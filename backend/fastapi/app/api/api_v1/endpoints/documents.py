@@ -18,6 +18,19 @@ def get_current_client_documents(
     return documents
 
 
+@router.get("", response_model=List[schemas.Document])
+def get_current_wealth_manager_documents(
+    db: Session = Depends(deps.get_db),
+    current_wealth_manager: models.Client = Depends(
+        deps.get_current_active_wealth_manager
+    ),
+) -> Any:
+    documents = crud.document.get_by_wealth_manager_id(
+        db, wealth_manager_id=current_wealth_manager.id
+    )
+    return documents
+
+
 @router.get("/all", response_model=List[schemas.Document])
 def get_all_documents(
     db: Session = Depends(deps.get_db),
