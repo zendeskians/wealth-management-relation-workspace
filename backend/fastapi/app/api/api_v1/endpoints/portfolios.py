@@ -21,7 +21,7 @@ def get_current_client_portfolio(
     return portfolios
 
 
-@router.get("/client")
+@router.get("/client/percentage_change_by_month")
 def get_current_client_portfolio_percentage_change_by_month(
     db: Session = Depends(deps.get_db),
     current_client: models.Client = Depends(deps.get_current_active_client),
