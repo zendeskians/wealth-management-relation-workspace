@@ -1,5 +1,5 @@
 import { Flex, Heading } from "@chakra-ui/layout";
-import ChatSidebar from "../../../components/ChatSidebar";
+import ChatSidebar from "../../../components/ChatSideBar";
 import { Avatar } from "@chakra-ui/avatar";
 import "antd/dist/antd.css";
 import {

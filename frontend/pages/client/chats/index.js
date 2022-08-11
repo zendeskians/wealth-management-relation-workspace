@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import PortfolioPerformance from "../../../components/PortfolioPerformance";
 import SidebarClient from "../../../components/Sidebar";
 import PieChart from "../../../components/PieChart";
-import Sidebar from "../../../components/ChatSidebar";
+import Sidebar from "../../../components/ChatSideBar";
 const { Header, Sider, Content } = Layout;
 
 const Chat = () => {
