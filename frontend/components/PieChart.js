@@ -12,18 +12,19 @@ export default function PieChart(props) {
               "#BB82F6"
             ],
         }],
-    
+
         // These labels appear in the legend and in the tooltips when hovering different arcs
         labels: [
             'Crypto',
             "Bonds"
         ]
     };
+
     const config = {
         type: 'doughnut',
-        data: data,
+        data: props.data,
       };
     return(
-        <Doughnut options={config} data={data}/>
+        <Doughnut options={config} data={props.data}/>
     )
 }
