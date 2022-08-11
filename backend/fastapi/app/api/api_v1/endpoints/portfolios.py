@@ -1,4 +1,3 @@
-from datetime import date
 from typing import Any, List
 
 from sqlalchemy.orm import Session
@@ -53,10 +52,10 @@ def create_portfolio(
     db: Session = Depends(deps.get_db),
     client_id: int = Body(...),
     wealth_manager_id: int = Body(...),
-    date: date = Body(...),
+    month: str = Body(...),
     financial_instrument: str = Body(...),
-    value_at_sod: float = Body(...),
-    value_at_eod: float = Body(None),
+    value_at_som: float = Body(...),
+    value_at_eom: float = Body(None),
 ) -> Any:
     """
     Create new portfolio
@@ -76,10 +75,10 @@ def create_portfolio(
     portfolio_in = schemas.PortfolioCreate(
         client_id=client_id,
         wealth_manager_id=wealth_manager_id,
-        date=date,
+        month=month,
         financial_instrument=financial_instrument,
-        value_at_sod=value_at_sod,
-        value_at_eod=value_at_eod,
+        value_at_som=value_at_som,
+        value_at_eom=value_at_eom,
     )
     portfolio = crud.portfolio.create(db, obj_in=portfolio_in)
     return portfolio
@@ -91,8 +90,8 @@ def update_portfolio_by_id(
     *,
     db: Session = Depends(deps.get_db),
     wealth_manager_id: int = Body(None),
-    value_at_sod: float = Body(None),
-    value_at_eod: float = Body(None),
+    value_at_som: float = Body(None),
+    value_at_eom: float = Body(None),
 ) -> Any:
     """
     Update a portfolio.
@@ -106,10 +105,10 @@ def update_portfolio_by_id(
     portfolio_in = schemas.PortfolioCreate(
         client_id=portfolio.client_id,
         wealth_manager_id=wealth_manager_id or portfolio.wealth_manager_id,
-        date=portfolio.date,
+        month=portfolio.month,
         financial_instrument=portfolio.financial_instrument,
-        value_at_sod=value_at_sod or portfolio.value_at_sod,
-        value_at_eod=value_at_eod or portfolio.value_at_eod,
+        value_at_som=value_at_som or portfolio.value_at_som,
+        value_at_eom=value_at_eom or portfolio.value_at_eom,
     )
     portfolio = crud.portfolio.update(db, db_obj=portfolio, obj_in=portfolio_in)
     return portfolio

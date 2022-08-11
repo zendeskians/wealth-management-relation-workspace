@@ -20,12 +20,12 @@ class CRUDPortfolio(CRUDBase[Portfolio, PortfolioCreate, PortfolioUpdate]):
         db_obj = Portfolio(
             client_id=obj_in.client_id,
             wealth_manager_id=obj_in.wealth_manager_id,
-            date=obj_in.date,
+            month=obj_in.month,
             financial_instrument=obj_in.financial_instrument,
-            value_at_sod=obj_in.value_at_sod,
+            value_at_som=obj_in.value_at_som,
         )
-        if obj_in.value_at_eod:
-            db_obj.value_at_eod = obj_in.value_at_eod
+        if obj_in.value_at_eom:
+            db_obj.value_at_eom = obj_in.value_at_eom
         db.add(db_obj)
         db.commit()
         db.refresh(db_obj)
