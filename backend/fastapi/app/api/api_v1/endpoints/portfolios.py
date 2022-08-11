@@ -9,7 +9,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 router = APIRouter()
 
 
-@router.get("", response_model=List[schemas.Portfolio])
+@router.get("/client", response_model=List[schemas.Portfolio])
 def get_current_client_portfolio(
     db: Session = Depends(deps.get_db),
     current_client: models.Client = Depends(deps.get_current_active_client),
@@ -18,6 +18,22 @@ def get_current_client_portfolio(
     Get all portfolios of current client
     """
     portfolios = crud.portfolio.get_by_client_id(db, client_id=current_client.id)
+    return portfolios
+
+
+@router.get("/wealth_manager", response_model=List[schemas.Portfolio])
+def get_current_wealth_manager_portfolio(
+    db: Session = Depends(deps.get_db),
+    current_wealth_manager: models.Client = Depends(
+        deps.get_current_active_wealth_manager
+    ),
+) -> Any:
+    """
+    Get all portfolios of current wealth manager
+    """
+    portfolios = crud.portfolio.get_by_wealth_manager_id(
+        db, client_id=current_wealth_manager.id
+    )
     return portfolios
 
 
