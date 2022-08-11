@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import PortfolioPerformance from "../components/PortfolioPerformance";
 import Sidebar from "../components/Sidebar";
 import PieChart from "../components/PieChart";
+import { lineGraphData, pieChartData } from "../constants/PortfolioPerformanceClientData"
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
@@ -28,10 +29,10 @@ const App = () => {
           <div className="flex justify-center font-bold text-lg">
             Your Portfolio at a glance
           </div>
-          <PortfolioPerformance />
+          <PortfolioPerformance data = {lineGraphData} />
           <div className="w-full justify-center flex mt-10">
             <div className="w-1/3 self-center">
-              <PieChart />
+              <PieChart data = {pieChartData} />
             </div>
           </div>
         </Content>
