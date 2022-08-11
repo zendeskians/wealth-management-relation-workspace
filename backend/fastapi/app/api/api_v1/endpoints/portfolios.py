@@ -116,6 +116,59 @@ def get_current_wealth_manager_portfolio_percentage_change_by_month(
     return client_data
 
 
+@router.get("/client/composition")
+def get_current_client_portfolio_composition(
+    db: Session = Depends(deps.get_db),
+    current_client: models.Client = Depends(deps.get_current_active_client),
+) -> Any:
+    """
+    Get portfolio composition of current client
+    """
+    portfolios = crud.portfolio.get_by_client_id(db, client_id=current_client.id)
+    composition = {}
+    for portfolio in portfolios:
+        if portfolio.financial_instrument not in composition:
+            composition[portfolio.financial_instrument] = 0
+        composition[portfolio.financial_instrument] += portfolio.value_at_eom
+    total_portfolio = sum(composition.values())
+    for financial_instrument in composition:
+        composition[financial_instrument] = (
+            composition[financial_instrument] / total_portfolio
+        )
+    return composition
+
+
+@router.get("/wealth_manager/composition")
+def get_current_wealth_manager_portfolio_composition(
+    db: Session = Depends(deps.get_db),
+    current_wealth_manager: models.Client = Depends(
+        deps.get_current_active_wealth_manager
+    ),
+) -> Any:
+    """
+    Get portfolio composition of current wealth manager's clients
+    """
+    portfolios = crud.portfolio.get_by_wealth_manager_id(
+        db, wealth_manager_id=current_wealth_manager.id
+    )
+    client_data = {}
+    for portfolio in portfolios:
+        if portfolio.client_id not in client_data:
+            client_data[portfolio.client_id] = {}
+        if portfolio.financial_instrument not in client_data[portfolio.client_id]:
+            client_data[portfolio.client_id][portfolio.financial_instrument] = 0
+        client_data[portfolio.client_id][
+            portfolio.financial_instrument
+        ] += portfolio.value_at_eom
+    for client in client_data:
+        total_portfolio = sum(client_data[client].values())
+        for financial_instrument in client_data[client]:
+            client_data[client][financial_instrument] = (
+                client_data[client][financial_instrument] / total_portfolio
+            )
+    return client_data
+
+
 @router.get("/wealth_manager", response_model=List[schemas.Portfolio])
 def get_current_wealth_manager_portfolio(
     db: Session = Depends(deps.get_db),
