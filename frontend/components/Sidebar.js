@@ -2,6 +2,7 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  LogoutOutlined
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import React from "react";
@@ -12,6 +13,12 @@ const URL_PREFIX = "/client"
 export default function Sidebar(props) {
 
   const router = useRouter()
+
+  function logout(){
+    window.localStorage.clear();
+    router.push("/login");
+  }
+
   return (
     <Sider trigger={null} collapsible collapsed={false}>
       <div className="flex text-white justify-center w-full h-32 items-center">
@@ -38,19 +45,19 @@ export default function Sidebar(props) {
             key: "2",
             icon: <VideoCameraOutlined />,
             label: "Chat",
-            onClick: () => { router.replace(URL_PREFIX + "/chat") }
+            onClick: () => { router.replace(URL_PREFIX + "/chats") }
           },
           {
             key: "3",
             icon: <UploadOutlined />,
-            label: "Recommender",
-            onClick: () => { router.replace(URL_PREFIX + "/recommender") }
+            label: "Documents",
+            onClick: () => { router.replace(URL_PREFIX + "/documents") }
           },
           {
             key: "4",
-            icon: <UploadOutlined />,
-            label: "Documents",
-            onClick: () => { router.replace(URL_PREFIX + "/documents") }
+            icon: <LogoutOutlined />,
+            label: "Logout",
+            onClick: () => { logout() }
           },
         ]}
       />

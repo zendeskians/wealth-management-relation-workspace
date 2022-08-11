@@ -15,7 +15,7 @@ const { Header, Sider, Content } = Layout;
 const Planner = () => {
   return (
     <Layout>
-      <SidebarManager selected = "3"/>
+      <SidebarManager selected = "4"/>
       <Layout className="site-layout  ">
         <Content
           className="site-layout-background h-screen flex-col items-center w-full"
@@ -24,11 +24,10 @@ const Planner = () => {
             padding: 24,
           }}
         >
-          {/* This is where the main stuff of the page should go */}
-          RECOMMENDER FILLER
+          <h1 class="text-2xl">Planner</h1>
           <div style={{ padding: '50px'}}>
             <h1 style={{ marginBottom: '20px'}}>
-              Kanban Board
+              
             </h1>
             <Kanban />
           </div>

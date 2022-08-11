@@ -5,21 +5,83 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PortfolioPerformance from "../../components/PortfolioPerformance";
 import Sidebar from "../../components/Sidebar";
 import PieChart from "../../components/PieChart";
 import {
   barChartData,
-  lineGraphData,
   pieChartData,
 } from "../../constants/PortfolioPerformanceClientData";
 import Bar from "../../components/BarChart";
 import BarChart from "../../components/BarChart";
 import { IndividualTx } from "../../components/Client/IndividualTx";
+import axios from 'axios'
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
+  const [dataForLine, setDataForLine] = useState();
+  var lineGraphData = {
+    labels: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "Sept",
+    ],
+    datasets: [
+      {
+        label: "Primary Portfolio",
+        data: [1, 2.234, 1.324, 4.123, 2.332, 4.234, 5.234234, 5.123, 7],
+        borderColor: "#3B82F6",
+      },
+      {
+        label: "Market Portfolio",
+        data: [1, 2.2, 1.3, 4, 1.8, 3, 4, 5, 5],
+        borderColor: "#BB82F6",
+      },
+    ],
+  };
+  async function getPortfolio(){
+    await axios.get("http://34.168.32.14:8081/api/v1/portfolio/client/percentage_change_by_month", {headers: {
+          'Content-Type': 'application/json',
+          'accept': 'application/json',
+          'Authorization': 'Bearer ' + window.localStorage.getItem("ACCESS_TOKEN")
+        }})
+        .then(res => {
+          const datas = res.data
+          const monthMapping = {
+            "January": 0,
+            "February": 1,
+            "March": 2,
+            "April": 3,
+            "May": 4,
+            "June": 5,
+            "July": 6
+          };
+          for (var data in datas){
+            console.log(data)
+            lineGraphData.datasets[0].data[monthMapping[data]] = datas[data]
+          }
+          console.log(lineGraphData)
+          setDataForLine(lineGraphData)
+          console.log(dataForLine);
+          
+        })
+        .catch(err => {
+            console.log(err)
+      
+      });
+  }
+  
+  useEffect(()=>{
+    // getPortfolio();
+  }, [])
+
   const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout>

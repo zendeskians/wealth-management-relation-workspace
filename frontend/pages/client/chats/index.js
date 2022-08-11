@@ -7,14 +7,15 @@ import {
 import { Layout, Menu } from "antd";
 import React, { useState } from "react";
 import PortfolioPerformance from "../../../components/PortfolioPerformance";
-import Sidebar from "../../../components/Sidebar";
+import SidebarClient from "../../../components/Sidebar";
 import PieChart from "../../../components/PieChart";
+import Sidebar from "../../../components/ChatSideBar";
 const { Header, Sider, Content } = Layout;
 
 const Chat = () => {
   return (
     <Layout>
-      <Sidebar selected="2" />
+      <SidebarClient selected="2" />
       <Layout className="site-layout  ">
         <Content
           className="site-layout-background h-screen flex-col items-center w-full"
@@ -24,7 +25,7 @@ const Chat = () => {
           }}
         >
           {/* This is where the main stuff of the page should go */}
-          CHAT FILLER
+          <Sidebar />
         </Content>
       </Layout>
     </Layout>

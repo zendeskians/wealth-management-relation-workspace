@@ -1,19 +1,22 @@
 import React, {useState} from 'react'
+import axios from 'axios'
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
+
+  const router = useRouter();
 
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [isError, setIsError] = useState(false);
 
-  function login(){
+  async function login(){
     let login_data = {
         username: username,
         password: password,
         user_type: "client"
       }
-
-      await axios.post(process.env.NEXT_PUBLIC_API_URL + "/login/access-token", login_data, {headers: {
+      await axios.post("http://34.168.32.14:8081/api/v1/login/access-token", login_data, {headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json'
       }})
@@ -21,7 +24,7 @@ const LoginForm = () => {
         console.log(res);
         if (res.status == 200) {
           localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
-          Router.push('/client')
+          router.push('/client')
         }
       })
       .catch(err => {
@@ -33,7 +36,7 @@ const LoginForm = () => {
 
   return (
     <div class="w-9/10 mx-auto">
-      <h1 class="text-2xl">Login</h1>
+      <h1 class="text-2xl text-white">Login</h1>
       <br />
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
