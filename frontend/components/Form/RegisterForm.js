@@ -1,4 +1,7 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import axios from "axios"
+import Router from 'next/router'
+
 const LoginForm = () => {
 
   const [name, setName] = useState();
@@ -8,14 +11,58 @@ const LoginForm = () => {
   const [dob, setDob] = useState();
   const [address, setAddress] = useState();
   const [isError, setIsError] = useState(false);
+  const [registerStatus, setRegisterStatus] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  function register(){
-    console.log(name)
-    console.log(email)
-    console.log(username)
-    console.log(password)
-    console.log(dob)
-    console.log(address)
+
+
+  async function register(props){
+
+    let data = {
+      username: username,
+      password: password,
+      email: email,
+      name: name,
+      dob: dob.toString(),
+      address: address,
+    }
+
+    await axios.post(process.env.NEXT_PUBLIC_API_URL + "/client", data, {headers: {
+      'Content-Type': 'application/json',
+      'accept': 'application/json'
+    }})
+    .then(res => {
+      console.log(res);
+      if (res.status == 200) {
+        setRegisterStatus(true)
+      }
+    })
+    .catch(err => console.log(err));
+
+
+    let login_data = {
+      username: username,
+      password: password,
+      user_type: "client"
+    }
+
+    await axios.post(process.env.NEXT_PUBLIC_API_URL + "/login/access-token", login_data, {headers: {
+      'Content-Type': 'application/json',
+      'accept': 'application/json'
+    }})
+    .then(res => {
+      console.log(res);
+      if (res.status == 200) {
+        localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
+        Router.push('/client')
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      setIsError(true);
+    });
+
+
   }
 
   return (

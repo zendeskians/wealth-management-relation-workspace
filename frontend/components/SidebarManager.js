@@ -11,7 +11,7 @@ const { Sider } = Layout;
 export default function SidebarManager(props){
 
   const router = useRouter();
-  
+
   return (
     <Sider trigger={null} collapsible collapsed={false}>
       <div className="flex text-white justify-center w-full h-32 items-center">
@@ -43,8 +43,8 @@ export default function SidebarManager(props){
           {
             key: "3",
             icon: <UploadOutlined />,
-            label: "Recommender",
-            onClick: () => { router.replace(URL_PREFIX + "/recommender") }
+            label: "Planner",
+            onClick: () => { router.replace(URL_PREFIX + "/planner") }
           }
         ]}
       />

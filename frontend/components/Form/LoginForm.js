@@ -2,13 +2,33 @@ import React, {useState} from 'react'
 
 const LoginForm = () => {
 
-  const [email, setUsername] = useState();
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [isError, setIsError] = useState(false);
 
   function login(){
-      console.log(email);
-      console.log(password)
+    let login_data = {
+        username: username,
+        password: password,
+        user_type: "client"
+      }
+  
+      await axios.post(process.env.NEXT_PUBLIC_API_URL + "/login/access-token", login_data, {headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
+      }})
+      .then(res => {
+        console.log(res);
+        if (res.status == 200) {
+          localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
+          Router.push('/client')
+        }
+      })
+      .catch(err => {
+          console.log(err)
+          setIsError(true);
+    
+    });
   }
 
   return (

@@ -1,0 +1,36 @@
+
+
+.tab {
+    transform: skew(-20deg);
+    margin-left: 10px;
+    padding: 4px;
+}
+
+.tab:hover {
+    transition: all 0.5s ease;
+    background-color: #1890FF;
+    color: white;
+}
+
+.tab.selected {
+    transition: all 0.5s ease;
+    background-color: #1890FF;
+    color: black;
+    padding: 4px;
+}
+
+.tab.selected a{
+    color: white;
+}
+
+.tab a {
+    color: black;
+    text-decoration: none;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+.tab:hover a {
+    color: white !important;
+    transition: all 0.5s ease;
+}
