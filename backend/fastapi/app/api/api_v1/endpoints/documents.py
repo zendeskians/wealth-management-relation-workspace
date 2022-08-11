@@ -134,9 +134,9 @@ def update_document_by_id(
         wealth_manager_id=document.wealth_manager_id,
         document_id=document.document_id,
     )
-    if docusign_url:
+    if docusign_url != None:
         document_in.docusign_url = docusign_url
-    if signed:
+    if signed != None:
         document_in.signed = docusign_url
     document = crud.document.update(db, db_obj=document, obj_in=document_in)
     return document
