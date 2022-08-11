@@ -43,6 +43,39 @@ def get_current_client_portfolio_percentage_change_by_month(
     return month_data
 
 
+@router.get("/wealth_manager/percentage_change_by_month")
+def get_current_wealth_manager_portfolio_percentage_change_by_month(
+    db: Session = Depends(deps.get_db),
+    current_wealth_manager: models.Client = Depends(
+        deps.get_current_active_wealth_manager
+    ),
+) -> Any:
+    """
+    Get portfolio percentage change of current wealth manager's clients by month
+    """
+    portfolios = crud.portfolio.get_by_wealth_manager_id(
+        db, client_id=current_wealth_manager.id
+    )
+    client_data = {}
+    for portfolio in portfolios:
+        if portfolio.client_id not in client_data:
+            client_data[portfolio.client_id] = {}
+        if portfolio.month not in client_data[portfolio.client_id]:
+            client_data[portfolio.client_id][portfolio.month] = {"som": 0, "eom": 0}
+        client_data[portfolio.client_id][portfolio.month][
+            "som"
+        ] += portfolio.value_at_som
+        client_data[portfolio.client_id][portfolio.month][
+            "eom"
+        ] += portfolio.value_at_eom
+    for client in client_data:
+        for month in client_data[client]:
+            client_data[client][month] = (
+                client_data[client][month]["eom"] - client_data[client][month]["som"]
+            ) / client_data[client][month]["som"]
+    return client_data
+
+
 @router.get("/wealth_manager", response_model=List[schemas.Portfolio])
 def get_current_wealth_manager_portfolio(
     db: Session = Depends(deps.get_db),
