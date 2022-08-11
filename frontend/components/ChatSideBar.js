@@ -3,10 +3,11 @@ import { Flex, Text } from "@chakra-ui/layout";
 import { IconButton } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/avatar";
 import { Button } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 
 const Chat = () => {
   return (
-    <Flex p={3} align="center" _hover={{ bg: "gray.100", cursor: "pointer" }}>
+    <Flex p={3} align="center" _hover={{ bg: "gray.100", cursor: "pointer" }} >
       <Avatar src="" marginEnd={3} />
       <Text>User@gmail.com</Text>
     </Flex>
@@ -14,6 +15,7 @@ const Chat = () => {
 };
 
 export default function Sidebar() {
+  const router = useRouter();
   return (
     <Flex
       //   bg="blue.100"
@@ -49,7 +51,7 @@ export default function Sidebar() {
         sx={{ scrollbarWidth: "none" }}
         flex={1}
       >
-        <Chat />
+        <Chat onClick={()=>{ router.push("/client/chats/1")}}/>
       </Flex>
     </Flex>
   );

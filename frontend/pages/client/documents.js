@@ -13,7 +13,7 @@ import {FilePreviewerThumbnail} from "react-file-previewer";
 import { Document, Page } from "react-pdf";
 const { Header, Sider, Content } = Layout;
 import axios from 'axios'
-import { sign } from "crypto";
+import Image from "next/image";
 
 const Documents = () => {
 
@@ -69,12 +69,7 @@ const Documents = () => {
               <div class="flex flex-col p-3">
                   {unSignedFiles.map(file => (
                     <div class="flex items-center justify-evenly mb-12">
-                      <FilePreviewerThumbnail
-                      file={{
-                        url: `/${file.document_name}.pdf`
-                      }}
-                      class="w-full mx-auto"
-                      />
+                    <Image class="w-full mx-auto" width="100%" height="100%" src={`/${file.document_name}.jpeg`} />
                       <div class="mr-4 pr-4">
                           <div class="text-lg">{file.document_name}</div>
                           <div class="text-lg">{file.description}</div>
@@ -91,12 +86,7 @@ const Documents = () => {
               <div class="flex flex-col">
                   {signedFiles.map(file => (
                     <div class="flex items-center justify-evenly mb-12">
-                      <FilePreviewerThumbnail
-                      file={{
-                        url: `/${file.document_name}.pdf`
-                      }}
-                      class="w-full mx-auto"
-                      />
+                    <Image class="w-full mx-auto" width="100%" height="100%" src={`/${file.document_name}.jpeg`} />
                       <div class="mr-4 pr-4">
                           <div class="text-lg">{file.document_name}</div>
                           <div class="text-lg">{file.description}</div>

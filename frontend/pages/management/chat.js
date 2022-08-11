@@ -11,7 +11,6 @@ import SidebarManager from "../../components/SidebarManager";
 import PieChart from "../../components/PieChart";
 import Sidebar from "../../components/ChatSidebar";
 const { Header, Sider, Content } = Layout;
-import Sidebar from "../../components/ChatSidebar";
 
 const Chat = () => {
   return (

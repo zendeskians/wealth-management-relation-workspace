@@ -22,11 +22,11 @@ const App = () => {
     <div class="w-screen h-screen bg-white">
       <div className="flex justify-around h-full my-auto items-center mt-12">
         <div className="w-1/2 text-center">
-          <Image src="/citibank-cover.jpeg" width="400px" height="500px" />
+        <Image src="/Citibank-Logo.png" width="450px" height="254px" layout="responsive" />
         </div>
         <div class="w-1 h-4/6 bg-black my-auto"></div>
         <div className="w-1/2 ml-5 text-center">
-          <p class="font-bold text-lg">Dive into our number one wealth management platform and receive top service from our professionals
+          <p class="font-bold text-lg">Dive into our number one wealth management platform <a href="/login" class="underline">CitiWealth</a> and receive top service from our professionals
           </p>
           <p class="font-bold text-3xl" style={{cursor: 'pointer'}}><PlayCircleFilled onClick={()=>router.push("/login")}/>
           </p>

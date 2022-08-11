@@ -70,12 +70,12 @@ const ClientPortfolio = (props) => {
             <div className="font-bold self-start text-lg">
               Monthly Growth in %
             </div>
-            <PortfolioPerformance data={lineGraphData[props.id]} />
+            <PortfolioPerformance data={lineGraphData[props.id-1]} />
           </div>
           <div className="w-full justify-center flex mt-10 flex flex-row justify-between">
             <div className="w-1/3 rounded-lg p-5 flex-col items-center flex">
               <div className="font-bold text-lg ">Portfolio Composition</div>
-              <PieChart data={pieChartData[props.id]} />
+              <PieChart data={pieChartData[props.id-1]} />
             </div>
             <div className="w-1/2 rounded-lg p-5 flex-col flex  items-center ">
               <div className="font-bold self-start text-lg">
@@ -83,7 +83,7 @@ const ClientPortfolio = (props) => {
               </div>
               <div className=" self-start ">12 August 2022</div>
               <div className="h-full flex-col flex items-center w-full">
-                <BarChart data={barChartData[props.id]} />
+                <BarChart data={barChartData[props.id-1]} />
               </div>
             </div>
           </div>

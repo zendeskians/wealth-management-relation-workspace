@@ -69,7 +69,7 @@ const LoginForm = () => {
 
   return (
     <div class="w-9/10 mx-auto">
-      <h1 class="text-2xl">Register</h1>
+      <h1 class="text-2xl text-white">Register</h1>
       <br />
       <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div class="mb-4">
