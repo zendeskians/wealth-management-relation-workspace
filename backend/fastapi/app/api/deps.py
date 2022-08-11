@@ -37,7 +37,7 @@ def get_current_client(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Could not validate credentials",
         )
-    client = crud.client.get(db, id=token_data.sub)
+    client = crud.client.get(db, id=token_data.id)
     if not client:
         raise HTTPException(status_code=404, detail="Client not found")
     return client
@@ -46,7 +46,7 @@ def get_current_client(
 def get_current_active_client(
     current_client: models.Client = Depends(get_current_client),
 ) -> models.Client:
-    if not crud.user.is_active(current_client):
+    if not crud.client.is_active(current_client):
         raise HTTPException(status_code=400, detail="Inactive client")
     return current_client
 
@@ -74,7 +74,7 @@ def get_current_wealth_manager(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Could not validate credentials",
         )
-    wealth_manager = crud.wealth_manager.get(db, id=token_data.sub)
+    wealth_manager = crud.wealth_manager.get(db, id=token_data.id)
     if not wealth_manager:
         raise HTTPException(status_code=404, detail="Wealth manager not found")
     return wealth_manager

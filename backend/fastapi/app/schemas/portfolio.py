@@ -1,4 +1,3 @@
-from datetime import date
 from typing import Optional
 
 from pydantic import BaseModel
@@ -9,10 +8,10 @@ class PortfolioBase(BaseModel):
     id: Optional[int]
     client_id: int
     wealth_manager_id: Optional[int] = None
-    date: date
+    month: str
     financial_instrument: str
-    value_at_sod: float
-    value_at_eod: Optional[float]
+    value_at_som: float
+    value_at_eom: Optional[float]
 
 
 # Properties to receive via API on creation

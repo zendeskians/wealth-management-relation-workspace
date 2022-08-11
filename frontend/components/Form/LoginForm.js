@@ -16,7 +16,6 @@ const LoginForm = () => {
         password: password,
         user_type: "client"
       }
-  
       await axios.post("http://34.168.32.14:8081/api/v1/login/access-token", login_data, {headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json'
@@ -31,7 +30,7 @@ const LoginForm = () => {
       .catch(err => {
           console.log(err)
           setIsError(true);
-    
+
     });
   }
 
