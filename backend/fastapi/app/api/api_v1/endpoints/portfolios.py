@@ -34,8 +34,8 @@ def get_current_client_portfolio_percentage_change_by_month(
     for portfolio in portfolios:
         if portfolio.month not in month_data:
             month_data[portfolio.month] = {"som": 0, "eom": 0}
-        month_data[portfolio.month][0] += portfolio.value_at_som
-        month_data[portfolio.month][1] += portfolio.value_at_eom
+        month_data[portfolio.month]["som"] += portfolio.value_at_som
+        month_data[portfolio.month]["eom"] += portfolio.value_at_eom
     for month, value in month_data:
         month_data[month] = (
             month_data[month]["eom"] - month_data[month]["som"]
