@@ -36,8 +36,10 @@ def get_current_client_portfolio_percentage_change_by_month(
             month_data[portfolio.month] = {"som": 0, "eom": 0}
         month_data[portfolio.month]["som"] += portfolio.value_at_som
         month_data[portfolio.month]["eom"] += portfolio.value_at_eom
-    for month, value in month_data:
-        month_data[month] = (value["eom"] - value["som"]) / value["som"]
+    for month in month_data:
+        month_data[month] = (
+            month_data[month]["eom"] - month_data[month]["som"]
+        ) / month_data[month]["som"]
     return month_data
 
 
