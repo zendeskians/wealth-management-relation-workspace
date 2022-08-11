@@ -86,7 +86,7 @@ def create_document(
     db: Session = Depends(deps.get_db),
     client_id: int = Body(...),
     wealth_manager_id: int = Body(...),
-    document_id: str = Body(...),
+    document_id: int = Body(...),
 ) -> Any:
     """
     Create new document
