@@ -3,7 +3,7 @@ from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from app.db.base_class import Base
 
 
-class Portfolio(Base):
+class Document(Base):
     id = Column(Integer, primary_key=True, index=True)
     client_id = Column(Integer, nullable=False)
     wealth_manager_id = Column(Integer, nullable=False)
