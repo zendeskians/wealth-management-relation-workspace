@@ -12,7 +12,7 @@ const LoginForm = () => {
         password: password,
         user_type: "client"
       }
-  
+
       await axios.post(process.env.NEXT_PUBLIC_API_URL + "/login/access-token", login_data, {headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json'
@@ -27,7 +27,7 @@ const LoginForm = () => {
       .catch(err => {
           console.log(err)
           setIsError(true);
-    
+
     });
   }
 

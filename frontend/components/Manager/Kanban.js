@@ -92,11 +92,11 @@ const Kanban = () => {
 										{provided.placeholder}
 									</div>
 									{showForm ? (<div class="p-3">
-										<textarea rows={3} class="border-gray-400 rounded focus:ring-purple-400" 
+										<textarea rows={3} class="border-gray-400 rounded focus:ring-purple-400"
 										data-id={index}
 										placeholder="Task Info" style={{backgroundColor: 'white'}}
 										onKeyPress={(e)=>onTextAreaKeyPress(e)}>
-										
+
 										</textarea>
 									</div>) : (<button class="mx-auto flex justify-center items-center text-center text-lg text-white mt-5" onClick={()=>{setShowForm(true)}}>
 									<div class="text-center">Add Task</div>
@@ -105,7 +105,7 @@ const Kanban = () => {
 								</div>
 							)}
 						</Droppable>
-						
+
 					))
 				}
 			</div>
