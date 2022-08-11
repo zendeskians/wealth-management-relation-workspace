@@ -15,7 +15,7 @@ depends_on = None
 
 
 UPGRADE_SQL = """
-CREATE TABLE IF NOT EXISTS `documents` (
+CREATE TABLE IF NOT EXISTS `document` (
     `id` int NOT NULL AUTO_INCREMENT,
     `client_id` int NOT NULL,
     `wealth_manager_id` int NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `documents` (
 """
 
 DOWNGRADE_SQL = """
-DROP TABLE IF EXISTS `documents`;
+DROP TABLE IF EXISTS `document`;
 """
 
 
