@@ -46,7 +46,7 @@ def get_current_client(
 def get_current_active_client(
     current_client: models.Client = Depends(get_current_client),
 ) -> models.Client:
-    if not crud.user.is_active(current_client):
+    if not crud.client.is_active(current_client):
         raise HTTPException(status_code=400, detail="Inactive client")
     return current_client
 
