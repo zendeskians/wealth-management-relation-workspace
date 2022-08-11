@@ -14,7 +14,7 @@ def get_current_client_documents(
     db: Session = Depends(deps.get_db),
     current_client: models.Client = Depends(deps.get_current_active_client),
 ) -> Any:
-    documents = crud.document.get_by_client_id(db, client_id=current_client.client_id)
+    documents = crud.document.get_by_client_id(db, client_id=current_client.id)
     return documents
 
 
