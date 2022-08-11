@@ -39,6 +39,7 @@ def login_access_token(
             oauth_client.id, user_type, expires_delta=access_token_expires
         ),
         "token_type": "bearer",
+        "user_type": user_type,
     }
 
 
