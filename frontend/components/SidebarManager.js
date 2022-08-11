@@ -43,8 +43,8 @@ export default function SidebarManager(props){
           {
             key: "3",
             icon: <UploadOutlined />,
-            label: "Recommender",
-            onClick: () => { router.replace(URL_PREFIX + "/recommender") }
+            label: "Planner",
+            onClick: () => { router.replace(URL_PREFIX + "/planner") }
           }
         ]}
       />
