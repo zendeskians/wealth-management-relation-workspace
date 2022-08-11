@@ -37,7 +37,7 @@ def get_current_client(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Could not validate credentials",
         )
-    client = crud.client.get(db, id=token_data.sub)
+    client = crud.client.get(db, id=token_data.id)
     if not client:
         raise HTTPException(status_code=404, detail="Client not found")
     return client
