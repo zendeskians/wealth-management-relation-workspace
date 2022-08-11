@@ -9,7 +9,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 router = APIRouter()
 
 
-@router.get("", response_model=List[schemas.Document])
+@router.get("/client", response_model=List[schemas.Document])
 def get_current_client_documents(
     db: Session = Depends(deps.get_db),
     current_client: models.Client = Depends(deps.get_current_active_client),
@@ -18,7 +18,7 @@ def get_current_client_documents(
     return documents
 
 
-@router.get("", response_model=List[schemas.Document])
+@router.get("/wealth_manager", response_model=List[schemas.Document])
 def get_current_wealth_manager_documents(
     db: Session = Depends(deps.get_db),
     current_wealth_manager: models.Client = Depends(
