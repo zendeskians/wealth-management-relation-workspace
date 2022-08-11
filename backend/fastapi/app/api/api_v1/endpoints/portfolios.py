@@ -54,7 +54,7 @@ def get_current_wealth_manager_portfolio_percentage_change_by_month(
     Get portfolio percentage change of current wealth manager's clients by month
     """
     portfolios = crud.portfolio.get_by_wealth_manager_id(
-        db, client_id=current_wealth_manager.id
+        db, wealth_manager_id=current_wealth_manager.id
     )
     client_data = {}
     for portfolio in portfolios:
