@@ -2,11 +2,23 @@ from typing import Any, List
 
 from sqlalchemy.orm import Session
 
-from app import crud, schemas
+from app import crud, models, schemas
 from app.api import deps
 from fastapi import APIRouter, Body, Depends, HTTPException
 
 router = APIRouter()
+
+
+@router.get("", response_model=List[schemas.Portfolio])
+def get_current_client_portfolio(
+    db: Session = Depends(deps.get_db),
+    current_client: models.Client = Depends(deps.get_current_active_client),
+) -> Any:
+    """
+    Get all portfolios of current client
+    """
+    portfolios = crud.portfolio.get_by_client_id(db, client_id=current_client.id)
+    return portfolios
 
 
 @router.get("/all", response_model=List[schemas.Portfolio])

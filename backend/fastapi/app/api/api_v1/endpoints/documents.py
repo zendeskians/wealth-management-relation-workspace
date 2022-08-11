@@ -14,6 +14,9 @@ def get_current_client_documents(
     db: Session = Depends(deps.get_db),
     current_client: models.Client = Depends(deps.get_current_active_client),
 ) -> Any:
+    """
+    Retrieve current client's documents
+    """
     documents = crud.document.get_by_client_id(db, client_id=current_client.id)
     return documents
 
@@ -25,6 +28,9 @@ def get_current_wealth_manager_documents(
         deps.get_current_active_wealth_manager
     ),
 ) -> Any:
+    """
+    Retrieve current wealth manager's documents
+    """
     documents = crud.document.get_by_wealth_manager_id(
         db, wealth_manager_id=current_wealth_manager.id
     )
