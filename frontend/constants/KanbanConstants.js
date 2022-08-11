@@ -7,21 +7,21 @@ export const data = [
         tasks: [
             {
                 id: uuidv4(),
-                title: "Learn JavaScript",
+                title: "Call Bob to confirm investment plan",
                 priority: 0,
                 chat: 10,
                 attachment: 5
             },
             {
                 id: uuidv4(),
-                title: "Learn Git",
+                title: "Double check Alice's signature on consent form",
                 priority: 2,
                 chat: 1,
                 attachment: 3
             },
             {
                 id: uuidv4(),
-                title: "Learn Python",
+                title: "Group KPI meeting about Q3",
                 priority: 0,
                 chat: 3,
                 attachment: 5
@@ -34,14 +34,14 @@ export const data = [
         tasks: [
             {
                 id: uuidv4(),
-                title: "Learn CSS",
+                title: "Present John with his wealth plan",
                 priority: 1,
                 chat: 7,
                 attachment: 5
             },
             {
                 id: uuidv4(),
-                title: "Learn Golang",
+                title: "1:1 session with the boss",
                 priority: 0,
                 chat: 2,
                 attachment: 6
@@ -54,7 +54,7 @@ export const data = [
         tasks: [
             {
                 id: uuidv4(),
-                title: "Learn HTML",
+                title: "Lunch with new client",
                 priority: 2,
                 chat: 7,
                 attachment: 2

@@ -3,41 +3,36 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  PlayCircleFilled
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import PortfolioPerformance from "../components/PortfolioPerformance";
 import Sidebar from "../components/Sidebar";
 import PieChart from "../components/PieChart";
 import { lineGraphData, pieChartData } from "../constants/PortfolioPerformanceClientData"
+import Image from 'next/image'
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
+  const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <Layout>
-      <Sidebar />
-      <Layout className="site-layout  ">
-        <Content
-          className="site-layout-background h-screen flex-col items-center w-full"
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-          }}
-        >
-          {/* This is where the main stuff of the page should go */}
-          <div className="flex justify-center font-bold text-lg">
-            Your Portfolio at a glance
-          </div>
-          <PortfolioPerformance data = {lineGraphData} />
-          <div className="w-full justify-center flex mt-10">
-            <div className="w-1/3 self-center">
-              <PieChart data = {pieChartData} />
-            </div>
-          </div>
-        </Content>
-      </Layout>
-    </Layout>
+    <div class="w-screen h-screen bg-white">
+      <div className="flex justify-around h-full my-auto items-center mt-12">
+        <div className="w-1/2 text-center">
+          <Image src="/citibank-cover.jpeg" width="400px" height="500px" />
+        </div>
+        <div class="w-1 h-4/6 bg-black my-auto"></div>
+        <div className="w-1/2 ml-5 text-center">
+          <p class="font-bold text-lg">Dive into our number one wealth management platform and receive top service from our professionals
+          </p>
+          <p class="font-bold text-3xl" style={{cursor: 'pointer'}}><PlayCircleFilled onClick={()=>router.push("/login")}/>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

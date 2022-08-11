@@ -2,6 +2,7 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  LogoutOutlined
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import {useRouter} from 'next/router';
@@ -11,6 +12,11 @@ const { Sider } = Layout;
 export default function SidebarManager(props){
 
   const router = useRouter();
+
+  function logout(){
+    window.localStorage.clear();
+    router.push("/login");
+  }
 
   return (
     <Sider trigger={null} collapsible collapsed={false}>
@@ -43,9 +49,21 @@ export default function SidebarManager(props){
           {
             key: "3",
             icon: <UploadOutlined />,
+            label: "Documents",
+            onClick: () => { router.replace(URL_PREFIX + "/documents") }
+          },
+          {
+            key: "4",
+            icon: <UploadOutlined />,
             label: "Planner",
             onClick: () => { router.replace(URL_PREFIX + "/planner") }
-          }
+          },
+          {
+            key: "5",
+            icon: <LogoutOutlined />,
+            label: "Logout",
+            onClick: () => { logout() }
+          },
         ]}
       />
     </Sider>

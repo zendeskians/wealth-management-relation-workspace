@@ -5,30 +5,111 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PortfolioPerformance from "../../components/PortfolioPerformance";
 import Sidebar from "../../components/Sidebar";
 import PieChart from "../../components/PieChart";
+import {FilePreviewerThumbnail} from "react-file-previewer";
+import { Document, Page } from "react-pdf";
 const { Header, Sider, Content } = Layout;
+import axios from 'axios'
+import { sign } from "crypto";
 
-const Chat = () => {
+const Documents = () => {
+
+  const [unSignedFiles, setUnsignedFiles] = useState([]);
+  const [signedFiles, setSignedFiles] = useState([])
+
+  async function getDocuments(){
+    await axios.get("http://34.168.32.14:8081/api/v1/document/client", {headers: {
+          'Content-Type': 'application/json',
+          'accept': 'application/json',
+          'Authorization': 'Bearer ' + window.localStorage.getItem("ACCESS_TOKEN")
+        }})
+        .then(res => {
+          const datas = res.data
+          console.log(datas)
+          for (var document of datas){
+            if (document.signed === true){
+              setSignedFiles([...signedFiles, document])
+            } else {
+              setUnsignedFiles([...unSignedFiles, document])
+            }
+          }
+        })
+        .catch(err => {
+            console.log(err)
+      
+      });
+  }
+
+  useEffect(()=>{
+    
+    getDocuments();
+  }, [])
+
   return (
     <Layout>
-      <Sidebar selected = "4"/>
+      <Sidebar selected = "3"/>
       <Layout className="site-layout  ">
         <Content
-          className="site-layout-background h-screen flex-col items-center w-full"
+          className="site-layout-background flex-col items-center w-full"
           style={{
             margin: "24px 16px",
             padding: 24,
           }}
         >
           {/* This is where the main stuff of the page should go */}
-          DOCUMENTS FILLER
+          <div className="font-bold self-start text-2xl mb-12">
+              Documents
+          </div>
+          <div className="flex justify-around h-full">
+            <div className="w-1/2 h-full text-center">
+              <h1 className="font-bold text-xl mb-12">Unsigned</h1>
+              <div class="flex flex-col">
+                  {unSignedFiles.map(file => (
+                    <div class="flex items-center justify-evenly mb-12">
+                      <FilePreviewerThumbnail
+                      file={{
+                        url: `/${file.document_name}.pdf`
+                      }}
+                      class="w-full mx-auto"
+                      />
+                      <div class="mr-4 pr-4">
+                          <div class="text-lg">{file.document_name}</div>
+                          <div class="text-lg">{file.description}</div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+            <div class="h-full w-1 bg-black my-auto">
+            
+            </div>
+            <div className="w-1/2 text-center">
+              <h1 className="font-bold text-xl mb-12">Signed</h1>
+              <div class="flex flex-col">
+                  {signedFiles.map(file => (
+                    <div class="flex items-center justify-evenly mb-12">
+                      <FilePreviewerThumbnail
+                      file={{
+                        url: `/${file.document_name}.pdf`
+                      }}
+                      class="w-full mx-auto"
+                      />
+                      <div class="mr-4 pr-4">
+                          <div class="text-lg">{file.document_name}</div>
+                          <div class="text-lg">{file.description}</div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
         </Content>
       </Layout>
     </Layout>
   );
 };
 
-export default Chat;
+export default Documents;

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from "axios"
-import Router from 'next/router'
+import { useRouter } from "next/router";
 
 const LoginForm = () => {
 
@@ -17,6 +17,8 @@ const LoginForm = () => {
 
 
   async function register(props){
+
+    const router = useRouter()
 
     let data = {
       username: username,
@@ -54,7 +56,7 @@ const LoginForm = () => {
       console.log(res);
       if (res.status == 200) {
         localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
-        Router.push('/client')
+        router.push('/client')
       }
     })
     .catch(err => {
