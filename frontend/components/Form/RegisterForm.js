@@ -17,12 +17,6 @@ const LoginForm = () => {
 
 
   async function register(props){
-    console.log(name)
-    console.log(email)
-    console.log(username)
-    console.log(password)
-    console.log(dob)
-    console.log(address)
 
     let data = {
       username: username,
@@ -60,11 +54,13 @@ const LoginForm = () => {
       console.log(res);
       if (res.status == 200) {
         localStorage.setItem("ACCESS_TOKEN", res.data.access_token);
-        setIsLoggedIn(true);
         Router.push('/client')
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err)
+      setIsError(true);
+    });
 
 
   }
