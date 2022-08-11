@@ -13,6 +13,13 @@ class CRUDPortfolio(CRUDBase[Portfolio, PortfolioCreate, PortfolioUpdate]):
     ) -> List[Optional[Portfolio]]:
         return (db.query(Portfolio).filter(Portfolio.client_id == client_id)).all()
 
+    def get_by_wealth_manager_id(
+        self, db: Session, *, wealth_manager_id: int
+    ) -> List[Optional[Portfolio]]:
+        return (
+            db.query(Portfolio).filter(Portfolio.wealth_manager_id == wealth_manager_id)
+        ).all()
+
     def get_by_id(self, db: Session, *, id: int) -> Optional[Portfolio]:
         return db.query(Portfolio).filter(Portfolio.id == id).first()
 
