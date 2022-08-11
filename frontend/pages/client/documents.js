@@ -31,9 +31,9 @@ const Documents = () => {
           console.log(datas)
           for (var document of datas){
             if (document.signed === true){
-              setSignedFiles([...signedFiles, document])
+              setSignedFiles(signedFiles => [...signedFiles, document])
             } else {
-              setUnsignedFiles([...unSignedFiles, document])
+              setUnsignedFiles(unSignedFiles => [...unSignedFiles, document])
             }
           }
         })
@@ -66,7 +66,7 @@ const Documents = () => {
           <div className="flex justify-around h-full">
             <div className="w-1/2 h-full text-center">
               <h1 className="font-bold text-xl mb-12">Unsigned</h1>
-              <div class="flex flex-col">
+              <div class="flex flex-col p-3">
                   {unSignedFiles.map(file => (
                     <div class="flex items-center justify-evenly mb-12">
                       <FilePreviewerThumbnail
