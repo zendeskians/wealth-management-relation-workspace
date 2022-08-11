@@ -6,15 +6,15 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import React, { useState } from "react";
-import PortfolioPerformance from "../../components/PortfolioPerformance";
-import Sidebar from "../../components/Sidebar";
-import PieChart from "../../components/PieChart";
+import PortfolioPerformance from "../../../components/PortfolioPerformance";
+import Sidebar from "../../../components/Sidebar";
+import PieChart from "../../../components/PieChart";
 const { Header, Sider, Content } = Layout;
 
 const Chat = () => {
   return (
     <Layout>
-      <Sidebar selected = "2"/>
+      <Sidebar selected="2" />
       <Layout className="site-layout  ">
         <Content
           className="site-layout-background h-screen flex-col items-center w-full"
