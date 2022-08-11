@@ -86,7 +86,8 @@ def create_document(
     db: Session = Depends(deps.get_db),
     client_id: int = Body(...),
     wealth_manager_id: int = Body(...),
-    document_id: int = Body(...),
+    document_name: str = Body(...),
+    description: str = Body(...),
 ) -> Any:
     """
     Create new document
@@ -106,7 +107,8 @@ def create_document(
     document_in = schemas.DocumentCreate(
         client_id=client_id,
         wealth_manager_id=wealth_manager_id,
-        document_id=document_id,
+        document_name=document_name,
+        description=description,
     )
     document = crud.document.create(db, obj_in=document_in)
     return document
@@ -117,6 +119,8 @@ def update_document_by_id(
     document_id: int,
     *,
     db: Session = Depends(deps.get_db),
+    document_name: str = Body(None),
+    description: str = Body(None),
     docusign_url: int = Body(None),
     signed: bool = Body(None),
 ) -> Any:
@@ -132,11 +136,10 @@ def update_document_by_id(
     document_in = schemas.DocumentCreate(
         client_id=document.client_id,
         wealth_manager_id=document.wealth_manager_id,
-        document_id=document.document_id,
+        document_name=document_name or document.document_name,
+        description=description or document.description,
+        docusign_url=docusign_url or document.docusign_url,
+        signed=signed or False,
     )
-    if docusign_url != None:
-        document_in.docusign_url = docusign_url
-    if signed != None:
-        document_in.signed = docusign_url
     document = crud.document.update(db, db_obj=document, obj_in=document_in)
     return document

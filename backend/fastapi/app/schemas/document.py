@@ -9,7 +9,8 @@ class DocumentBase(BaseModel):
     id: Optional[int]
     client_id: int
     wealth_manager_id: int
-    document_id: int
+    document_name: str
+    description: str
     docusign_url: Optional[str] = None
     signed: Optional[bool] = False
     created_at: Optional[datetime] = None

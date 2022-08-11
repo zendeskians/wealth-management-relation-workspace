@@ -37,7 +37,8 @@ class CRUDDocument(CRUDBase[Document, DocumentCreate, DocumentUpdate]):
         db_obj = Document(
             client_id=obj_in.client_id,
             wealth_manager_id=obj_in.wealth_manager_id,
-            document_id=obj_in.document_id,
+            document_name=obj_in.document_name,
+            document_description=obj_in.document_description,
         )
         if obj_in.docusign_url:
             db_obj.docusign_url = obj_in.docusign_url
